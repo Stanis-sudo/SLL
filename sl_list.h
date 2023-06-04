@@ -11,6 +11,7 @@ class SL_List
 public:
     SL_List();
     void push_back(T&);
+    void push_front(T&);
     void print() const;
 };
 
