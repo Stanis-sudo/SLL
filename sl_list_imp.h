@@ -10,7 +10,7 @@ SL_List<T>::SL_List(){
 }
 
 template <class T>
-void SL_List<T>::push_back(T& data) {
+void SL_List<T>::push_back(const T& data) {
     auto node = new Node<T>(data);
     if (!head) {
         head = node;
@@ -23,7 +23,7 @@ void SL_List<T>::push_back(T& data) {
         size++;
 }
 template <class T>
-void SL_List<T>::push_front(T& data) {
+void SL_List<T>::push_front(const T& data) {
     auto node = new Node<T>(data);
     if (!head) {
         head = node;
@@ -37,10 +37,40 @@ void SL_List<T>::push_front(T& data) {
 }
 
 template <class T>
+void SL_List<T>::insert(const T& data, const int pos) {
+    if (pos < 0 or pos > size) return;
+    auto node = new Node<T>(data);
+    auto temp = head;
+    if (!head and !pos) {
+        head = node;
+        tail = head;
+    }
+    else if (!pos){
+        node->set_next(head);
+        head = node;
+    }
+    else if (pos == size){
+        tail->set_next(node);
+        tail = node;
+    }
+    else {
+        int p = pos;
+        while(--p) temp = temp->get_next();
+        node->set_next(temp->get_next());
+        temp->set_next(node);
+    }
+        size++;
+}
+
+template <class T>
 void SL_List<T>::print() const {
-    std::cout << "Head address = " << head << std::endl;
-    std::cout << "Head data = " << head->get_data() << std::endl;
-    std::cout << "Tail address = " << tail << std::endl;
-    std::cout << "Tail data = " << tail->get_data() << std::endl;
     std::cout << "Size = " << size << std::endl;
+    auto temp = head;
+    int count = 1;
+    while(temp){
+    std::cout << ".:: " << count++ << " ::." << std::endl;
+    std::cout << "Node address = " << temp << std::endl;
+    std::cout << "Node data = " << temp->get_data() << std::endl;
+    temp = temp->get_next();
+    }
 }

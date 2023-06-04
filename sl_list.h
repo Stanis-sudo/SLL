@@ -10,8 +10,9 @@ class SL_List
 
 public:
     SL_List();
-    void push_back(T&);
-    void push_front(T&);
+    void push_back(const T&);
+    void push_front(const T&);
+    void insert(const T&, const int);
     void print() const;
 };
 
