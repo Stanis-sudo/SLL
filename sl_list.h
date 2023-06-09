@@ -12,6 +12,8 @@ public:
     SL_List();
     void push_back(const T&);
     void push_front(const T&);
+    void pop_back();
+    void pop_front();
     void insert(const T&, const int);
     void print() const;
 };

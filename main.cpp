@@ -35,7 +35,15 @@ int main()
     t = 8;
     ll.insert(t, 7);
     ll.print();
+    ll.pop_back();
+    ll.print();
+    ll.pop_back();
+    ll.print();
+    ll.pop_front();
+    ll.pop_front();
+    ll.print();
 /*
+    ll.print();
     SL_List<std::string> str;
     std::string s = "AAA";
     str.push_back(s);
