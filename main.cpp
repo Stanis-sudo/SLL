@@ -20,6 +20,7 @@ int main()
     ll.push_back(t);
     cout << "Front = " << ll.front() << endl;
     cout << "Back = " << ll.back() << endl;
+    cout << "Size = " << ll.size() << endl;
     t = 1;
     ll.push_front(t);
     t = 0;

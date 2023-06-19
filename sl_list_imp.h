@@ -7,7 +7,7 @@ SL_List<T>::SL_List()
 {
     head = nullptr;
     tail = nullptr;
-    size = 0;
+    sz = 0;
 }
 
 template <class T>
@@ -24,7 +24,7 @@ void SL_List<T>::push_back(const T &data)
         tail->set_next(node);
         tail = node;
     }
-    size++;
+    sz++;
 }
 template <class T>
 void SL_List<T>::push_front(const T &data)
@@ -40,39 +40,39 @@ void SL_List<T>::push_front(const T &data)
         node->set_next(head);
         head = node;
     }
-    size++;
+    sz++;
 }
 
 template <class T>
 void SL_List<T>::pop_back()
 {
-    if (!head or size < 1)
+    if (!head or sz < 1)
         return;
-    size_t p = size - 1;
+    size_t p = sz - 1;
     auto current = head;
     while (--p)
         current = current->get_next();
     delete tail;
     tail = current;
     tail->set_next(nullptr);
-    size--;
+    sz--;
 }
 
 template <class T>
 void SL_List<T>::pop_front()
 {
-    if (!head or size < 1)
+    if (!head or sz < 1)
         return;
     auto temp = head->get_next();
     delete head;
     head = temp;
-    size--;
+    sz--;
 }
 
 template <class T>
 void SL_List<T>::insert(const T &data, const int pos)
 {
-    if (pos < 0 or pos > size)
+    if (pos < 0 or pos > sz)
         return;
     auto node = new Node<T>(data);
     auto temp = head;
@@ -86,7 +86,7 @@ void SL_List<T>::insert(const T &data, const int pos)
         node->set_next(head);
         head = node;
     }
-    else if (pos == size)
+    else if (pos == sz)
     {
         tail->set_next(node);
         tail = node;
@@ -99,7 +99,7 @@ void SL_List<T>::insert(const T &data, const int pos)
         node->set_next(temp->get_next());
         temp->set_next(node);
     }
-    size++;
+    sz++;
 }
 
 template <class T>
@@ -113,9 +113,14 @@ T SL_List<T>::back() const {
 }
 
 template <class T>
+unsigned int SL_List<T>::size() const {
+    return sz;
+}
+
+template <class T>
 void SL_List<T>::print() const
 {
-    std::cout << "Size = " << size << std::endl;
+    std::cout << "Size = " << sz << std::endl;
     auto temp = head;
     int count = 1;
     while (temp)

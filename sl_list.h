@@ -6,7 +6,7 @@ class SL_List
 {
     Node<T>* head;
     Node<T>* tail;
-    unsigned int size;
+    unsigned int sz;
 
 public:
     SL_List();
@@ -20,6 +20,7 @@ public:
     void insert(const T&, const int);
     T front() const;
     T back() const;
+    unsigned int size() const;
     void print() const;
 };
 
