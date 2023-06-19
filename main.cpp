@@ -1,3 +1,4 @@
+#include <gtest/gtest.h>
 #include <iostream>
 #include <string>
 #include "sl_list.h"
@@ -14,8 +15,11 @@ int main()
     SL_List<int> ll;
     int t = 2;
     ll.push_back(t);
+    cout << "Front = " << ll.front() << endl;
     t = 3;
     ll.push_back(t);
+    cout << "Front = " << ll.front() << endl;
+    cout << "Back = " << ll.back() << endl;
     t = 1;
     ll.push_front(t);
     t = 0;
@@ -35,6 +39,8 @@ int main()
     t = 8;
     ll.insert(t, 7);
     ll.print();
+    cout << "For each loop : " << endl;
+    for (auto a : ll) cout << a << endl;
     ll.pop_back();
     ll.print();
     ll.pop_back();

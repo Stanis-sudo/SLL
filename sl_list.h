@@ -10,11 +10,16 @@ class SL_List
 
 public:
     SL_List();
+    class iterator;
+    iterator begin();
+    iterator end();
     void push_back(const T&);
     void push_front(const T&);
     void pop_back();
     void pop_front();
     void insert(const T&, const int);
+    T front() const;
+    T back() const;
     void print() const;
 };
 

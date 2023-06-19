@@ -103,6 +103,16 @@ void SL_List<T>::insert(const T &data, const int pos)
 }
 
 template <class T>
+T SL_List<T>::front() const {
+    return head->get_data();
+}
+
+template <class T>
+T SL_List<T>::back() const {
+    return tail->get_data();
+}
+
+template <class T>
 void SL_List<T>::print() const
 {
     std::cout << "Size = " << size << std::endl;
@@ -115,4 +125,51 @@ void SL_List<T>::print() const
         std::cout << "Node data = " << temp->get_data() << std::endl;
         temp = temp->get_next();
     }
+}
+
+template <class T>
+class SL_List<T>::iterator : public std::iterator<std::forward_iterator_tag, int> {
+    public:
+    friend class SL_List<T>;
+    Node<T>* curr;
+
+    typedef T value_type;
+    typedef T& reference;
+    typedef T* pointer;
+    typedef T difference_type;
+    typedef std::forward_iterator_tag iterator_category;
+
+    iterator(Node<T>* x = 0) : curr(x){}
+
+    bool operator== (const iterator& x) const {
+        return curr == x.curr;
+    }
+
+    bool operator!= (const iterator& x) const {
+        return curr != x.curr;
+    }
+
+    value_type operator*() const {
+        return curr->get_data();
+    }
+
+    iterator& operator++() {
+        curr = curr->get_next();
+        return *this;
+    }
+
+    iterator& operator++(int) {
+        iterator tmp(curr);
+        curr = curr->get_next();
+        return tmp;
+    }
+};
+
+template <class T>
+typename SL_List<T>::iterator SL_List<T>::begin() {
+    return iterator(SL_List<T>::head);
+}
+template <class T>
+typename SL_List<T>::iterator SL_List<T>::end() {
+    return SL_List<T>::iterator(nullptr);
 }
